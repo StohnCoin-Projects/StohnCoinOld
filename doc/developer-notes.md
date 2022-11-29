@@ -392,7 +392,7 @@ Threads
 
 - ThreadMapPort : Universal plug-and-play startup/shutdown
 
-- ThreadSocketHandler : Sends/Receives data from peers on port 37104.
+- ThreadSocketHandler : Sends/Receives data from peers on port 37218.
 
 - ThreadOpenAddedConnections : Opens network connections to added nodes.
 
@@ -402,7 +402,7 @@ Threads
 
 - DumpAddresses : Dumps IP addresses of nodes to peers.dat.
 
-- ThreadRPCServer : Remote procedure call handler, listens on port 37103 for connections and services them.
+- ThreadRPCServer : Remote procedure call handler, listens on port 37217 for connections and services them.
 
 - Shutdown : Does an orderly shutdown of everything.
 

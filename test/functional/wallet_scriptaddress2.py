@@ -41,7 +41,7 @@ class ScriptAddress2Test(BitcoinTestFramework):
         addr2 = self.nodes[0].getnewaddress()
 
         multisig_addr = self.nodes[0].addmultisigaddress(2, [addr, addr2], "multisigaccount")['address']
-        assert_equal(multisig_addr[0], 'S')
+        assert_equal(multisig_addr[0], 'T')
 
         # Send to a new multisig address
         txid = self.nodes[1].sendtoaddress(multisig_addr, 1)
@@ -63,7 +63,7 @@ class ScriptAddress2Test(BitcoinTestFramework):
         # Send to an old multisig address. The api addmultisigaddress
         # can only generate a new address so we manually compute
         # multisig_addr_old beforehand using an old client.
-        priv_keys = ["cU7eeLPKzXeKMeZvnEJhvZZ3tLqVF3XGeo1BbM8dnbmV7pP3Sg89",
+        priv_keys = ["cU7eeLPKzXeKMeZvnEJhvZZ3tLqVF3XGeo1BbM8dnbmV7pP3Tg89",
                      "cTw7mRhSvTfzqCt6MFgBoTBqwBpYu2rWugisXcwjv4cAASh3iqPt"]
 
         addrs = ["mj6gNGRXPXrD69R5ApjcsDerZGrYKSfb6v",
@@ -73,8 +73,8 @@ class ScriptAddress2Test(BitcoinTestFramework):
         self.nodes[0].importprivkey(priv_keys[1])
 
         multisig_addr_new = self.nodes[0].addmultisigaddress(2, addrs, "multisigaccount2")['address']
-        assert_equal(multisig_addr_new, 'SZ974ZrPrmqMmm1PSVp4m8YEgo3bCSZBbe')
-        multisig_addr_old = "2N5nLwYz9qfnGdaFLpPn3gS6oYSbmLTWPjq"
+        assert_equal(multisig_addr_new, 'TZ974ZrPrmqMmm1PSVp4m8YEgo3bCTZBbe')
+        multisig_addr_old = "2N5nLwYz9qfnGdaFLpPn3gS6oYTbmLTWPjq"
 
         # Let's send to the old address. We can then find it in the
         # new address with the new client. So basically the old

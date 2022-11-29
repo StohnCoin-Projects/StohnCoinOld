@@ -45,11 +45,11 @@ config file): *Needed for Tor version 0.2.7.0 and older versions of Tor only. Fo
 versions of Tor see [Section 3](#3-automatically-listen-on-tor).*
 
 	HiddenServiceDir /var/lib/tor/stohn-service/
-	HiddenServicePort 37104 127.0.0.1:37104
-	HiddenServicePort 47104 127.0.0.1:47104
+	HiddenServicePort 37218 127.0.0.1:37218
+	HiddenServicePort 47218 127.0.0.1:47218
 
 The directory can be different of course, but (both) port numbers should be equal to
-your stohnd's P2P listen port (37104 by default).
+your stohnd's P2P listen port (37218 by default).
 
 	-externalip=X   You can tell stohn about its publicly reachable address using
 	                this option, and this can be a .onion address. Given the above
@@ -84,7 +84,7 @@ as well, use `discover` instead:
 
 	./stohnd ... -discover
 
-and open port 37104 on your firewall (or use -upnp).
+and open port 37218 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach .onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:

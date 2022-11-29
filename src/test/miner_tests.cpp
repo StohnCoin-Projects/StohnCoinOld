@@ -369,7 +369,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     // subsidy changing
     int nHeight = chainActive.Height();
     // Create an actual 209999-long block chain (without valid blocks).
-    while (chainActive.Tip()->nHeight < 249999) {
+    while (chainActive.Tip()->nHeight < 199999) {
         CBlockIndex* prev = chainActive.Tip();
         CBlockIndex* next = new CBlockIndex();
         next->phashBlock = new uint256(InsecureRand256());
@@ -381,7 +381,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     }
     BOOST_CHECK(pblocktemplate = AssemblerForTest(chainparams).CreateNewBlock(scriptPubKey));
     // Extend to a 210000-long block chain.
-    while (chainActive.Tip()->nHeight < 250000) {
+    while (chainActive.Tip()->nHeight < 200000) {
         CBlockIndex* prev = chainActive.Tip();
         CBlockIndex* next = new CBlockIndex();
         next->phashBlock = new uint256(InsecureRand256());

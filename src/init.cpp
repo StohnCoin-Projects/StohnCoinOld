@@ -557,7 +557,7 @@ void SetupServerArgs()
 std::string LicenseInfo()
 {
     const std::string URL_SOURCE_CODE = "<https://github.com/StohnIO/Stohncoin>";
-    const std::string URL_WEBSITE = "<https://stohncoin.org>";
+    const std::string URL_WEBSITE = "<https://stohncoin.org/>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i"), COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

@@ -63,7 +63,7 @@ def read_dump(file_name, addrs, script_addrs, hd_master_addr_old):
                         if addr.startswith('m') or addr.startswith('n'):
                             # P2PKH address
                             found_legacy_addr += 1
-                        elif addr.startswith('S'):
+                        elif addr.startswith('T'):
                             # P2SH-segwit address
                             found_p2sh_segwit_addr += 1
                         elif addr.startswith('rsoh1'):
