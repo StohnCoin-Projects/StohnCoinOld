@@ -49,6 +49,10 @@ struct BIP9Deployment {
  */
 struct Params {
     uint256 hashGenesisBlock;
+
+    // HARDFORK2023 update
+    int HardFork_Height;
+
     int nSubsidyHalvingInterval;
     /** Block height at which BIP16 becomes active */
     int BIP16Height;
@@ -59,6 +63,12 @@ struct Params {
     int BIP65Height;
     /** Block height at which BIP66 becomes active */
     int BIP66Height;
+
+
+
+    // Added variable #HARDFORK2023 update
+    int64_t nPowTargetTimespan_Fork;
+
     /**
      * Minimum blocks including miner confirmation of the total of 2016 blocks in a retargeting period,
      * (nPowTargetTimespan / nPowTargetSpacing) which is also used for BIP9 deployments.
@@ -74,8 +84,10 @@ struct Params {
     int64_t nPowTargetSpacing;
     int64_t nPowTargetTimespan;
     int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
+    int64_t DifficultyAdjustmentInterval_Fork() const { return nPowTargetTimespan_Fork / nPowTargetSpacing; }
     uint256 nMinimumChainWork;
     uint256 defaultAssumeValid;
+
 };
 } // namespace Consensus
 
