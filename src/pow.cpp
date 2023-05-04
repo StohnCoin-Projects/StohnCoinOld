@@ -10,7 +10,7 @@
 #include <chain.h>
 #include <primitives/block.h>
 #include <uint256.h>
-#include "logging.h"
+//#include "logging.h"
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
@@ -26,7 +26,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     // Check if we have reached the hard fork block height
     // #HARDFORK2023 Update
-
     if (pindexLast->nHeight >= params.HardFork_Height) {
         difficultyAdjustmentInterval = params.DifficultyAdjustmentInterval_Fork();
         nTargetTimespan = params.nPowTargetTimespan_Fork;
@@ -34,8 +33,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         difficultyAdjustmentInterval = params.DifficultyAdjustmentInterval();
         nTargetTimespan = params.nPowTargetTimespan;
     }
-
-    LogPrintf("Difficulty Adjustment Interval: %d\n", difficultyAdjustmentInterval);
 
     // #HARDFORK2023 Update
     if ((pindexLast->nHeight+1) % difficultyAdjustmentInterval != 0)
@@ -56,9 +53,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
                 // #HARDFORK2023
                 while (pindex->pprev && pindex->nHeight % difficultyAdjustmentInterval != 0 && pindex->nBits == nProofOfWorkLimit){
                     pindex = pindex->pprev;
-
-                    // #HARDFORK2023 Log - added {}
-                    LogPrintf("Difficulty target for block at height %d is %08x\n", pindex->nHeight, pindex->nBits);
 
                 }
 
@@ -99,22 +93,19 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
 
     // Limit adjustment step
     int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
-    LogPrintf("nActualTimespan: %lld\n", nActualTimespan);
 
       // #HARDFORK2023 Update
-    /*  if (pindexLast->nHeight >= params.HardFork_Height) {
-          if (nActualTimespan < nTargetTimespan / 2)
-              nActualTimespan = nTargetTimespan / 2;
+      if (pindexLast->nHeight >= params.HardFork_Height) {
+          if (nActualTimespan < nTargetTimespan / 4)
+              nActualTimespan = nTargetTimespan / 4;
           if (nActualTimespan > nTargetTimespan * 2)
               nActualTimespan = nTargetTimespan * 2;
-      } else { */
+      } else {
           if (nActualTimespan < nTargetTimespan / 4)
               nActualTimespan = nTargetTimespan / 4;
           if (nActualTimespan > nTargetTimespan * 4)
               nActualTimespan = nTargetTimespan * 4;
-    //  }
-
-      LogPrintf("nActualTimespan (after limits): %lld\n", nActualTimespan);
+      }
 
     // Retarget
     arith_uint256 bnNew;

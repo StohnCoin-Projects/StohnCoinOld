@@ -82,8 +82,8 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // New consensus variables added for the #HARDFORK2023 Update
-        consensus.HardFork_Height = 102850;
-        consensus.nPowTargetTimespan_Fork = 7 * 24 * 60 * 60; // 7 days
+        consensus.HardFork_Height = 102920;
+        consensus.nPowTargetTimespan_Fork = 504 * 5 * 60; // 504 blocks
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
@@ -127,9 +127,8 @@ public:
         // release ASAP to avoid it where possible.
 
         // HARDFORK2023 updated seed node
-        //vSeeds.emplace_back("159.89.53.185");
-        //vSeeds.emplace_back("138.68.155.81");
-        vSeeds.emplace_back("170.64.160.103");
+        vSeeds.emplace_back("159.89.53.185");
+        vSeeds.emplace_back("138.68.155.81");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,64);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -188,8 +187,8 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // New consensus variables added for the #HARDFORK2023
-        consensus.HardFork_Height = 102850;
-        consensus.nPowTargetTimespan_Fork = 7 * 24 * 60 * 60; // 7 days
+        consensus.HardFork_Height = 10;
+        consensus.nPowTargetTimespan_Fork = 504 * 5 * 60; // 504 blocks
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
@@ -287,8 +286,8 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         // New consensus variables added for the #HARDFORK2023
-        consensus.HardFork_Height = 2016;
-        consensus.nPowTargetTimespan_Fork = 7 * 24 * 60 * 60; // 7 days
+        consensus.HardFork_Height = 1092;
+        consensus.nPowTargetTimespan_Fork = 504 * 5 * 60; // 504 blocks
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
