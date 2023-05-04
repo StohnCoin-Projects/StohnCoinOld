@@ -128,8 +128,10 @@ public:
         // release ASAP to avoid it where possible.
 
         // HARDFORK2023 updated seed node
-        vSeeds.emplace_back("159.89.53.185");
-        vSeeds.emplace_back("138.68.155.81");
+        //vSeeds.emplace_back("159.89.53.185");
+        //vSeeds.emplace_back("138.68.155.81");
+        vSeeds.emplace_back("170.64.160.103");
+
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,64);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
