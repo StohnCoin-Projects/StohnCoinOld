@@ -102,17 +102,17 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     LogPrintf("nActualTimespan: %lld\n", nActualTimespan);
 
       // #HARDFORK2023 Update
-      if (pindexLast->nHeight >= params.HardFork_Height) {
+    /*  if (pindexLast->nHeight >= params.HardFork_Height) {
           if (nActualTimespan < nTargetTimespan / 2)
               nActualTimespan = nTargetTimespan / 2;
           if (nActualTimespan > nTargetTimespan * 2)
               nActualTimespan = nTargetTimespan * 2;
-      } else {
+      } else { */
           if (nActualTimespan < nTargetTimespan / 4)
               nActualTimespan = nTargetTimespan / 4;
           if (nActualTimespan > nTargetTimespan * 4)
               nActualTimespan = nTargetTimespan * 4;
-      }
+    //  }
 
       LogPrintf("nActualTimespan (after limits): %lld\n", nActualTimespan);
 
