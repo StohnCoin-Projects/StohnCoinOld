@@ -3,7 +3,7 @@
 <plist version="0.9">
 <dict>
   <key>LSMinimumSystemVersion</key>
-  <string>10.10.0</string>
+  <string>10.14.0</string>
 
   <key>LSArchitecturePriority</key>
   <array>
@@ -17,13 +17,13 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>1.0.0.0, Copyright © 2009-2021 The Stohn Core developers</string>
+  <string>2.0.0.0, Copyright © 2009-2023 The Stohn Core developers</string>
 
   <key>CFBundleShortVersionString</key>
-  <string>1.0.0</string>
+  <string>2.0.0</string>
 
   <key>CFBundleVersion</key>
-  <string>1.0.0</string>
+  <string>2.0.0</string>
 
   <key>CFBundleSignature</key>
   <string>????</string>
