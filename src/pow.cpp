@@ -102,10 +102,17 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     LogPrintf("nActualTimespan: %lld\n", nActualTimespan);
 
       // #HARDFORK2023 Update
-      if (nActualTimespan < nTargetTimespan/4)
-          nActualTimespan = nTargetTimespan/4;
-      if (nActualTimespan > nTargetTimespan*4)
-          nActualTimespan = nTargetTimespan*4;
+      if (pindexLast->nHeight >= params.HardFork_Height) {
+          if (nActualTimespan < nTargetTimespan / 2)
+              nActualTimespan = nTargetTimespan / 2;
+          if (nActualTimespan > nTargetTimespan * 2)
+              nActualTimespan = nTargetTimespan * 2;
+      } else {
+          if (nActualTimespan < nTargetTimespan / 4)
+              nActualTimespan = nTargetTimespan / 4;
+          if (nActualTimespan > nTargetTimespan * 4)
+              nActualTimespan = nTargetTimespan * 4;
+      }
 
       LogPrintf("nActualTimespan (after limits): %lld\n", nActualTimespan);
 
@@ -129,10 +136,6 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
 
     if (bnNew > bnPowLimit)
         bnNew = bnPowLimit;
-
-    LogPrintf("Old target: %s\n", bnOld.ToString());
-    LogPrintf("New target: %s\n", bnNew.ToString());
-
 
     return bnNew.GetCompact();
 }
