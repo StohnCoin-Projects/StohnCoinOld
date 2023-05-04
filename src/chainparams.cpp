@@ -82,7 +82,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // New consensus variables added for the #HARDFORK2023 Update
-        consensus.HardFork_Height = 102920;
+        consensus.HardFork_Height = 103000;
         consensus.nPowTargetTimespan_Fork = 504 * 5 * 60; // 504 blocks
 
         // Deployment of BIP68, BIP112, and BIP113.
