@@ -23,8 +23,8 @@ packages:
 - "python"
 - "rename"
 remotes:
-- "url": "https://github.com/stohn-project/stohn.git"
-  "dir": "stohn"
+- "url": "https://github.com/StohnIO/StohnCoin.git"
+  "dir": "StohnCoin"
 files: []
 script: |
   set -e -o pipefail
@@ -105,7 +105,7 @@ script: |
   create_per-host_linker_wrapper "2000-01-01 12:00:00"
   export PATH=${WRAP_DIR}:${PATH}
 
-  cd stohn
+  cd StohnCoin
   BASEPREFIX=`pwd`/depends
   # Build dependencies for each host
   for i in $HOSTS; do
