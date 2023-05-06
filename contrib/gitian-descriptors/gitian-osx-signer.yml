@@ -6,14 +6,9 @@ architectures:
 - "amd64"
 packages:
 - "faketime"
-- "xorriso"
-- "python3-pip"
 remotes:
-- "url": "https://github.com/stohn-project/stohn-detached-sigs.git"
+- "url": "https://github.com/StohnIO/stohn-detached-sigs.git"
   "dir": "signature"
-- "url": "https://github.com/achow101/signapple.git"
-  "dir": "signapple"
-  "commit": "0777ce58e61b0e6be753a5f524149d6d47905186
 files:
 - "stohn-osx-unsigned.tar.gz"
 script: |
@@ -41,8 +36,8 @@ script: |
   export PATH="$HOME/.local/bin":$PATH
   cd ..
 
-  UNSIGNED_TARBALL=litecoin-osx-unsigned.tar.gz
-  UNSIGNED_APP=dist/Litecoin-Qt.app
+  UNSIGNED_TARBALL=stohn-osx-unsigned.tar.gz
+  UNSIGNED_APP=dist/Stohn-Qt.app
   SIGNED=stohn-osx-signed.dmg
 
   tar -xf ${UNSIGNED_TARBALL}
