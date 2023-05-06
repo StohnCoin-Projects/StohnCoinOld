@@ -18,7 +18,7 @@
 #define CLIENT_VERSION_IS_RELEASE true
 
 /* Major version */
-#define CLIENT_VERSION_MAJOR 1
+#define CLIENT_VERSION_MAJOR 2
 
 /* Minor version */
 #define CLIENT_VERSION_MINOR 0
@@ -36,7 +36,7 @@
 #define COPYRIGHT_HOLDERS_SUBSTITUTION "Stohn Core"
 
 /* Copyright year */
-#define COPYRIGHT_YEAR 2021
+#define COPYRIGHT_YEAR 2023
 
 /* Define this symbol to build code that uses AVX2 intrinsics */
 #define ENABLE_AVX2 1
@@ -364,7 +364,7 @@
 #define LT_OBJDIR ".libs/"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "https://github.com/stohn-project/stohn/issues"
+#define PACKAGE_BUGREPORT "https://github.com/StohnIO/StohnCoin/issues"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "Stohn Core"
