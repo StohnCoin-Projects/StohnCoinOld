@@ -189,13 +189,6 @@ def main():
         if not 'LXC_GUEST_IP' in os.environ.keys():
             os.environ['LXC_GUEST_IP'] = '10.0.3.5'
 
-    # If no SDK found, download SDK
-    if args.macos and not os.path.isfile('gitian-builder/inputs/MacOSX10.11.sdk.tar.gz'):
-        # Download Mac SDK
-        MAC_SDK = 'MacOSX10.11.sdk.tar.gz'
-        subprocess.check_call(['wget', '-N', '-P', 'gitian-builder/inputs', 'https://bitcoincore.org/depends-sources/sdks/{}'.format(MAC_SDK)])
-        subprocess.check_call(["echo 'bec9d089ebf2e2dd59b1a811a38ec78ebd5da18cbbcd6ab39d1e59f64ac5033f gitian-builder/inputs/{}' | sha256sum -c".format(MAC_SDK)], shell=True)
-
     script_name = os.path.basename(sys.argv[0])
     # Signer and version shouldn't be empty
     if args.signer == '':
@@ -226,6 +219,13 @@ def main():
     subprocess.check_call(['git', 'fetch'])
     subprocess.check_call(['git', 'checkout', args.commit])
     os.chdir(workdir)
+
+    # If no SDK found, download SDK
+    if args.macos and not os.path.isfile('gitian-builder/inputs/MacOSX10.11.sdk.tar.gz'):
+        # Download Mac SDK
+        MAC_SDK = 'MacOSX10.11.sdk.tar.gz'
+        subprocess.check_call(['wget', '-N', '-P', 'gitian-builder/inputs', 'https://bitcoincore.org/depends-sources/sdks/{}'.format(MAC_SDK)])
+        subprocess.check_call(["echo 'bec9d089ebf2e2dd59b1a811a38ec78ebd5da18cbbcd6ab39d1e59f64ac5033f gitian-builder/inputs/{}' | sha256sum -c".format(MAC_SDK)], shell=True)
 
     if args.build:
         build()
