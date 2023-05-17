@@ -127,6 +127,7 @@ public:
         // release ASAP to avoid it where possible.
 
         // HARDFORK2023 updated seed node
+        vSeeds.emplace_back("seed.stohnpool.com");
         vSeeds.emplace_back("159.89.53.185");
         vSeeds.emplace_back("138.68.155.81");
 
