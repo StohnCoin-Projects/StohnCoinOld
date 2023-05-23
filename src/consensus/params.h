@@ -52,6 +52,8 @@ struct Params {
 
     // HARDFORK2023 update
     int HardFork_Height;
+    // Added for LWMA HARDFORK
+    int HardFork_Height2;
 
     int nSubsidyHalvingInterval;
     /** Block height at which BIP16 becomes active */

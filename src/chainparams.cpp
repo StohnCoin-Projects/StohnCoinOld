@@ -85,6 +85,9 @@ public:
         consensus.HardFork_Height = 103000;
         consensus.nPowTargetTimespan_Fork = 504 * 5 * 60; // 504 blocks
 
+        // LWMA3 HARDFORK
+        consensus.HardFork_Height2 = 104900;
+
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
@@ -192,6 +195,9 @@ public:
         consensus.HardFork_Height = 10;
         consensus.nPowTargetTimespan_Fork = 504 * 5 * 60; // 504 blocks
 
+        // LWMA3 HARDFORK
+        consensus.HardFork_Height2 = 80;
+
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 1483228800; // January 1, 2017
@@ -288,8 +294,11 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
 
         // New consensus variables added for the #HARDFORK2023
-        consensus.HardFork_Height = 1092;
+        consensus.HardFork_Height = 160;
         consensus.nPowTargetTimespan_Fork = 504 * 5 * 60; // 504 blocks
+
+        // LWMA3 HARDFORK
+        consensus.HardFork_Height2 = 200;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");

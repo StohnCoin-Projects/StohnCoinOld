@@ -10,7 +10,47 @@
 #include <chain.h>
 #include <primitives/block.h>
 #include <uint256.h>
-//#include "logging.h"
+#include "logging.h"
+
+// LWMA HardFork
+#include <math.h>
+
+// LWMA calculation HardFork
+unsigned int Lwma3CalculateNextWorkRequired(const CBlockIndex* pindexLast, const Consensus::Params& params)
+{
+    const int64_t T = params.nPowTargetSpacing;
+    const int64_t N = 60;
+    const int64_t k = N * (N + 1) * T / 2;
+    const int64_t height = pindexLast->nHeight;
+    const arith_uint256 powLimit = UintToArith256(params.powLimit);
+
+    if (height < N) { return powLimit.GetCompact(); }
+
+    arith_uint256 sumTarget, nextTarget;
+    int64_t thisTimestamp, previousTimestamp;
+    int64_t t = 0, j = 0;
+
+    const CBlockIndex* blockPreviousTimestamp = pindexLast->GetAncestor(height - N);
+    previousTimestamp = blockPreviousTimestamp->GetBlockTime();
+
+    // Loop through N most recent blocks.
+    for (int64_t i = height - N + 1; i <= height; i++) {
+        const CBlockIndex* block = pindexLast->GetAncestor(i);
+        thisTimestamp = (block->GetBlockTime() > previousTimestamp) ?
+                         block->GetBlockTime() : previousTimestamp + 1;
+        int64_t solvetime = std::min(6 * T, thisTimestamp - previousTimestamp);
+        previousTimestamp = thisTimestamp;
+        j++;
+        t += solvetime * j; // Weighted solvetime sum.
+        arith_uint256 target;
+        target.SetCompact(block->nBits);
+        sumTarget += target / (k * N);
+    }
+    nextTarget = t * sumTarget;
+    if (nextTarget > powLimit) { nextTarget = powLimit; }
+
+    return nextTarget.GetCompact();
+}
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
@@ -25,13 +65,24 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     // Only change once per difficulty adjustment interval
 
     // Check if we have reached the hard fork block height
+
+    // Check if we have reached the LWMA3 hard fork block height
+    if (pindexLast->nHeight + 1 >= params.HardFork_Height2) {
+        LogPrintf("Current block height: %d\n", pindexLast->nHeight);
+        LogPrintf("Reached LWMA3 hard fork block height. \n");
+        return Lwma3CalculateNextWorkRequired(pindexLast, params);
+    }
     // #HARDFORK2023 Update
-    if (pindexLast->nHeight >= params.HardFork_Height) {
+    else if (pindexLast->nHeight >= params.HardFork_Height) {
         difficultyAdjustmentInterval = params.DifficultyAdjustmentInterval_Fork();
         nTargetTimespan = params.nPowTargetTimespan_Fork;
+        LogPrintf("Current block height: %d\n", pindexLast->nHeight);
+        LogPrintf("HardFork_Height condition met.\n");
     } else {
         difficultyAdjustmentInterval = params.DifficultyAdjustmentInterval();
         nTargetTimespan = params.nPowTargetTimespan;
+        LogPrintf("Current block height: %d\n", pindexLast->nHeight);
+        LogPrintf("HardFork_Height condition not met.\n");
     }
 
     // #HARDFORK2023 Update
