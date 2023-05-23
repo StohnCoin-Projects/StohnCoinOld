@@ -86,7 +86,7 @@ public:
         consensus.nPowTargetTimespan_Fork = 504 * 5 * 60; // 504 blocks
 
         // LWMA3 HARDFORK
-        consensus.HardFork_Height2 = 105000;
+        consensus.HardFork_Height2 = 104950;
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
