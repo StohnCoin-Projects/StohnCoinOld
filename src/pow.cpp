@@ -10,7 +10,6 @@
 #include <chain.h>
 #include <primitives/block.h>
 #include <uint256.h>
-#include "logging.h"
 
 // LWMA HardFork
 #include <math.h>
@@ -68,21 +67,15 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     // Check if we have reached the LWMA3 hard fork block height
     if (pindexLast->nHeight + 1 >= params.HardFork_Height2) {
-        LogPrintf("Current block height: %d\n", pindexLast->nHeight);
-        LogPrintf("Reached LWMA3 hard fork block height. \n");
         return Lwma3CalculateNextWorkRequired(pindexLast, params);
     }
     // #HARDFORK2023 Update
     else if (pindexLast->nHeight >= params.HardFork_Height) {
         difficultyAdjustmentInterval = params.DifficultyAdjustmentInterval_Fork();
         nTargetTimespan = params.nPowTargetTimespan_Fork;
-        LogPrintf("Current block height: %d\n", pindexLast->nHeight);
-        LogPrintf("HardFork_Height condition met.\n");
     } else {
         difficultyAdjustmentInterval = params.DifficultyAdjustmentInterval();
         nTargetTimespan = params.nPowTargetTimespan;
-        LogPrintf("Current block height: %d\n", pindexLast->nHeight);
-        LogPrintf("HardFork_Height condition not met.\n");
     }
 
     // #HARDFORK2023 Update
