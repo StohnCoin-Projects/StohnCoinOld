@@ -23,7 +23,7 @@ fi
 rm -rf ${TEMPDIR} ${TEMPLIST}
 mkdir -p ${TEMPDIR}
 
-${CODESIGN} -f --file-list ${TEMPLIST} "$@" "${BUNDLE}"
+${CODESIGN} -f -o runtime --timestamp --file-list ${TEMPLIST} "$@" "${BUNDLE}"
 
 grep -v CodeResources < "${TEMPLIST}" | while read i; do
   TARGETFILE="${BUNDLE}/`echo "${i}" | sed "s|.*${BUNDLE}/||"`"
