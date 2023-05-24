@@ -5,13 +5,6 @@ Stohn is a cryptocurrency Bitcoin fork with modified block parameters. Stohn Cor
 For more information, please see the website:
 https://stohncoin.org
 
-What is Stohn Core?
-=====================================
-
-Stohn Core connects to the Stohn peer-to-peer network to download and fully
-validate blocks and transactions. It also includes a wallet and graphical user
-interface, which can be optionally built.
-
 Ports
 =====================================
 
