@@ -1,11 +1,8 @@
-<div align="center">
 <h1>
 STOHN CORE
 <br/>
 [SOH]
 </h1>
-</div>
-=====================================
 
 Stohn is a cryptocurrency Bitcoin fork with modified block parameters. Stohn Core is an open source software that allows anyone to operate a node in the Stohn blockchain network and uses the Scrypt hashing method for Proof of Work mining.
 
