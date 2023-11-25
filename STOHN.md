@@ -39,14 +39,14 @@ index 30e4fbf..be0b168 100755
 +++ b/bin/make-base-vm
 @@ -198,7 +198,7 @@ if [ $DOCKER = "1" ]; then
  FROM $base_image
- 
+
  ENV DEBIAN_FRONTEND=noninteractive
 -RUN echo 'Acquire::http { Proxy "$MIRROR_BASE"; };' > /etc/apt/apt.conf.d/50cacher
 +# RUN echo 'Acquire::http { Proxy "$MIRROR_BASE"; };' > /etc/apt/apt.conf.d/50cacher
  RUN apt-get update && apt-get --no-install-recommends -y install $addpkg
- 
+
  RUN useradd -ms /bin/bash -U $DISTRO
--- 
+--
 2.25.1
 ```
 
@@ -86,7 +86,7 @@ $ ./gitian-build.py --help
 ```bash
 $ mkdir signwin
 $ cp StohnCoin/contrib/windeploy/detached-sig-create.sh signwin
-$ cp gitian-builder/inputs/stohn-{VERSION}-win-unsigned.tar.gz signwin # replace {VERSION} with build version without v 
+$ cp gitian-builder/inputs/stohn-{VERSION}-win-unsigned.tar.gz signwin # replace {VERSION} with build version without v
 $ cd signwin
 $ tar xf stohn-{VERSION}-win-unsigned.tar.gz
 $ openssl pkcs12 -in PATH_TO_P12_CERT -nodes -out private.key -nocerts
@@ -102,7 +102,7 @@ $ rm signature-win.tar.gz
 $ cd ..
 ```
 
-If you've codesigned macOS and generated detached sigs, please commit and push. Otherwise continue with instructions for macOS Codesigning on a Mac. 
+If you've codesigned macOS and generated detached sigs, please commit and push. Otherwise continue with instructions for macOS Codesigning on a Mac.
 
 ------------------------
 
@@ -152,7 +152,7 @@ $ xcrun stapler staple dist/Stohn-Qt.app
 
 Verify if app is sucessfully notarized:
 ```bash
-$ codesign -vvvv dist/Stohn-Qt.app 
+$ codesign -vvvv dist/Stohn-Qt.app
   dist/Stohn-Qt.app: valid on disk
   dist/Stohn-Qt.app: satisfies its Designated Requirement
 $ spctl -a -vvvv dist/Stohn-Qt.app
@@ -191,4 +191,4 @@ $ git push
 ```
 
 Now all you need to do is upload your binaries, and include a copy of the sha256sum files.
-For extra security, you may also provide signed asc files, signed with a trustworthy gpg key. 
+For extra security, you may also provide signed asc files, signed with a trustworthy gpg key.
