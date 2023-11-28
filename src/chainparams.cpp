@@ -81,11 +81,13 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
-        // New consensus variables added for the #HARDFORK2023 Update
+        // New consensus variables added for the #HARDFORK that occured on Block 103000
+        // This hard fork updated the way the difficulty hashrate was calculated
         consensus.HardFork_Height = 103000;
         consensus.nPowTargetTimespan_Fork = 504 * 5 * 60; // 504 blocks
 
-        // LWMA3 HARDFORK
+        // New LWMA3 HARDFORK that occured on Block 104950
+        // This hard fork updated the way the difficulty hashrate was calculated
         consensus.HardFork_Height2 = 104950;
 
         // Deployment of BIP68, BIP112, and BIP113.
@@ -129,7 +131,7 @@ public:
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
 
-        // HARDFORK2023 updated seed node
+        // Seed Nodes - Updated 2023
         vSeeds.emplace_back("seed.stohnpool.com");
         vSeeds.emplace_back("159.89.53.185");
         vSeeds.emplace_back("138.68.155.81");

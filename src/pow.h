@@ -17,7 +17,7 @@ class uint256;
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params&);
 
-// #HARDFORK 2023 Update
+// #HARDFORK 2023 Update 
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params&, int64_t nTargetTimespan);
 
 

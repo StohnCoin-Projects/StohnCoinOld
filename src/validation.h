@@ -493,7 +493,7 @@ CBlockFileInfo* GetBlockFileInfo(size_t n);
 /** Dump the mempool to disk. */
 bool DumpMempool();
 
-/** Load the mempool from disk. */
+/** Load the mempool from disk. */ 
 bool LoadMempool();
 
 //! Check whether the block associated with this index entry is pruned or not.

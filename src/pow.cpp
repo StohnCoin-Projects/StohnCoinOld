@@ -54,7 +54,7 @@ unsigned int Lwma3CalculateNextWorkRequired(const CBlockIndex* pindexLast, const
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
 
-  // #HARDFORK2023 Update
+  // #HARDFORK 2023 Update
   int64_t difficultyAdjustmentInterval = params.DifficultyAdjustmentInterval();
   int64_t nTargetTimespan = params.nPowTargetTimespan;
 
@@ -78,7 +78,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         nTargetTimespan = params.nPowTargetTimespan;
     }
 
-    // #HARDFORK2023 Update
+    // #HARDFORK 2023 Update
     if ((pindexLast->nHeight+1) % difficultyAdjustmentInterval != 0)
     {
         if (params.fPowAllowMinDifficultyBlocks)
@@ -122,12 +122,12 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     assert(pindexFirst);
 
-    // #HARDFORK2023 Update
+    // #HARDFORK 2023 Update
     return CalculateNextWorkRequired(pindexLast, pindexFirst->GetBlockTime(), params, nTargetTimespan);
 
 }
 
-// #HARDFORK2023 Update
+// #HARDFORK 2023 Update
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params, int64_t nTargetTimespan)
 {
     if (params.fPowNoRetargeting)
@@ -138,7 +138,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     // Limit adjustment step
     int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
 
-      // #HARDFORK2023 Update
+      // #HARDFORK 2023 Update
       if (pindexLast->nHeight >= params.HardFork_Height) {
           if (nActualTimespan < nTargetTimespan / 4)
               nActualTimespan = nTargetTimespan / 4;
@@ -162,7 +162,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     if (fShift)
         bnNew >>= 1;
 
-    // #HARDFORK2023 Update
+    // #HARDFORK 2023 Update
     bnNew *= nActualTimespan;
     bnNew /= nTargetTimespan;
 
